@@ -1,0 +1,238 @@
+html {
+  scroll-behavior: smooth;
+}
+
+main {
+  --columns: 10;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.title,
+.about,
+.skills,
+.progress {
+  --width: 10;
+  --initialbasis: calc(var(--width) / var(--columns) * 100%);
+  --gap-constant: 1%;
+  --gap: calc((var(--columns) - var(--width)) * var(--gap-constant));
+  flex-basis: calc(var(--initialbasis) - var(--gap));
+}
+
+.animation {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-items: space-around;
+  align-items: center;
+}
+
+.hello {
+  animation: typing 1.5s steps(10);
+  overflow-x: hidden;
+  white-space: nowrap;
+  width: 10ch;
+  position: relative;
+}
+
+@keyframes typing {
+  from {
+    width: 0ch;
+  }
+  to {
+    width: 10ch;
+  }
+}
+.cursor {
+  animation: cursor 1s infinite;
+  width: 10px;
+  height: 40px;
+  position: relative;
+}
+
+@keyframes cursor {
+  from {
+    background-color: var(--secondary-color);
+  }
+  to {
+    background-color: transparent;
+  }
+  0% {
+    background-color: var(--secondary-color);
+  }
+  50% {
+    background-color: var(--secondary-color);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+.title h1 {
+  padding: 1% 0;
+  font-size: 2em;
+}
+
+.container {
+  padding: 1em 2.5em;
+}
+
+.about h2,
+.skills h2 {
+  font-size: 2em;
+}
+
+.block {
+  font-size: 0.8em;
+  text-align: justify;
+}
+
+.tags {
+  color: var(--terciary-color);
+  display: block;
+  width: min-content;
+  transform: translateX(-2.4em);
+  font-size: 1em;
+  font-weight: 400;
+}
+
+.progress {
+  /* padding: 2% 0 5% 0; */
+  display: flex;
+  position: relative;
+  flex-flow: column wrap;
+  align-items: flex-start;
+  justify-content: flex-end;
+  max-width: 100%;
+}
+
+.plabel {
+  padding-top: 1.5em;
+  opacity: 0;
+}
+
+.bar {
+  width: 100%;
+}
+
+progress[value] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+}
+
+.bar {
+  transform: scaleX(0);
+  transform-origin: left;
+}
+.bar::-webkit-progress-value {
+  background-color: var(--primary-color);
+}
+
+.bar::-webkit-progress-bar {
+  width: 100%;
+  height: 0.2em;
+  background-color: var(--secondary-color);
+}
+
+.bar::-moz-progress-bar {
+  width: 100%;
+  height: 0.5em;
+  background-color: var(--secondary-color);
+}
+
+.bar::-moz-progress-value {
+  background-color: var(--primary-color);
+}
+
+label::after {
+  border: none;
+  background: none;
+  opacity: 0;
+  transition: ease-in-out;
+  transition: opacity 0.4s ease-in-out;
+  transition-delay: 0.05s;
+  color: var(--secondary-color);
+  font-weight: 400;
+}
+
+label.one::after {
+  content: "95%";
+}
+
+label.two::after {
+  content: "90%";
+}
+
+label.three::after {
+  content: "75%";
+}
+
+label.four::after {
+  content: "50%";
+}
+
+label:hover::after {
+  opacity: 1;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  opacity: 0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+}
+
+@media (min-width: 740px) {
+  main {
+    --columns: 8;
+  }
+
+  .container .about {
+    --width: 8;
+  }
+}
+
+@media (min-width: 950px) {
+  main {
+    --columns: 4;
+  }
+
+  .container .section {
+    --gap-constant: 4%;
+    --width: 4;
+  }
+
+  .container .about {
+    --width: 4;
+  }
+}
+
+@media (min-width: 1200px) {
+  main {
+    --columns: 4;
+  }
+
+  .about,
+  .title {
+    --gap-constant: 1%;
+    --width: 4;
+  }
+
+  .skills {
+    --gap-constant: 0%;
+    --width: 3;
+    box-sizing: border-box;
+  }
+  .progress {
+    padding-left: 0;
+    --width: 1;
+    box-sizing: border-box;
+  }
+}
